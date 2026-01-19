@@ -2,6 +2,28 @@
 
 A LaTeX-based notebook containing competitive programming templates and algorithms.
 
+## Quick Start (Easiest Method)
+
+After installing LaTeX and Python (see Step-by-Step Setup Guide below), simply run:
+
+```bash
+python3 main.py
+```
+
+This single command will:
+- ✅ Check all requirements automatically
+- ✅ Generate sections from the `codes/` folder
+- ✅ Compile the LaTeX document
+- ✅ Organize all output files in the `build_output/` folder
+- ✅ Create the final PDF
+
+The PDF will be available at `build_output/main.pdf`
+
+
+
+
+
+
 ## Step-by-Step Setup Guide
 
 Follow these steps to build the PDF from scratch:
@@ -39,47 +61,67 @@ pip install pygments
 pip3 install pygments
 ```
 
-### Step 3: Get the Required Files and Folders
+### Step 3: Project Structure
 
-Ensure you have the following files and folder structure:
+The project has the following structure:
 
-**Required Files:**
-- `main.tex` - The main LaTeX document
-- `generate_sections.py` - Python script to generate sections from code files
-- `sections.tex` - Generated file (will be created by the script)
-
-**Required Folder:**
-- `codes/` - Folder containing all `.cpp` template files
-
-**Optional Files (for advanced builds):**
-- `Makefile` - For building with `make`
-- `build.sh` - Alternative build script
-- `build` - Simple wrapper script
-- `latexmkrc` - Configuration for latexmk
-
-### Step 4: Generate Sections from Code Files
-
-Run the Python script to automatically generate `sections.tex` from all `.cpp` files in the `codes/` folder:
-
-```bash
-python3 generate_sections.py
+```
+.
+├── main.py              # Main build script (run this!)
+├── README.md            # This file
+└── notebook/            # All LaTeX and source files
+    ├── main.tex         # Main LaTeX document
+    ├── math_formulas.tex # Mathematical formulas and notes
+    ├── generate_sections.py # Script to generate sections
+    ├── codes/           # Folder containing all .cpp template files
+    ├── sections.tex      # Generated file (created automatically)
+    ├── Makefile         # For building with make (optional)
+    ├── build.sh         # Alternative build script (optional)
+    └── ...              # Other LaTeX-related files
 ```
 
-This script will:
-- Scan the `codes/` folder for all `.cpp` files
-- Generate section names by converting filenames (removing underscores, capitalizing words)
-- Create `sections.tex` with all the sections
+**Note**: All files except `main.py` and `README.md` are in the `notebook/` folder. The `main.py` script handles everything automatically.
 
-### Step 5: Build the PDF with LaTeX
+### Step 4: Build the PDF
 
-Compile the main LaTeX document using `pdflatex` with the `-shell-escape` flag (required for the `minted` package):
+**Option A: Automated Build (Recommended)**
+
+Simply run the main build script:
 
 ```bash
-pdflatex -shell-escape main.tex
-pdflatex -shell-escape main.tex  # Run twice for cross-references
+python3 main.py
 ```
 
-The PDF will be generated as `main.pdf`.
+This will automatically:
+- Generate sections from the `codes/` folder
+- Compile the LaTeX document
+- Organize all output files in `build_output/` folder
+- Create the final PDF at `build_output/main.pdf`
+
+**Option B: Manual Build**
+
+If you prefer to build manually, navigate to the `notebook/` folder first:
+
+1. Change to the notebook directory:
+   ```bash
+   cd notebook
+   ```
+
+2. Generate sections from code files:
+   ```bash
+   python3 generate_sections.py
+   ```
+   This script will:
+   - Scan the `codes/` folder for all `.cpp` files
+   - Generate section names by converting filenames (removing underscores, capitalizing words)
+   - Create `sections.tex` with all the sections
+
+3. Build the PDF with LaTeX:
+   ```bash
+   pdflatex -shell-escape main.tex
+   pdflatex -shell-escape main.tex  # Run twice for cross-references
+   ```
+   The PDF will be generated as `main.pdf` in the `notebook/` folder.
 
 **Note**: Always use the `-shell-escape` flag. Without it, you will get errors because `minted` cannot process the code files.
 
@@ -94,28 +136,51 @@ The PDF will be generated as `main.pdf`.
 
 ⚠️ **IMPORTANT**: This document uses the `minted` package which **REQUIRES** the `-shell-escape` flag. You **cannot** build it with just `pdflatex main.tex`. You must use one of the methods below:
 
-### Method 1: Using Make (Recommended)
+### Method 1: Using main.py (Recommended - Automated)
+
+The easiest way to build everything automatically:
+
 ```bash
+python3 main.py
+```
+
+This script handles everything automatically and organizes output files in the `build_output/` folder.
+
+### Method 2: Using Make
+
+Navigate to the `notebook/` folder first:
+```bash
+cd notebook
 make
 ```
 or
 ```bash
+cd notebook
 make pdf
 ```
 
-### Method 2: Using the Build Script
+### Method 3: Using the Build Script
+
+Navigate to the `notebook/` folder first:
 ```bash
+cd notebook
 chmod +x build.sh
 ./build.sh
 ```
 
-### Method 3: Using latexmk
+### Method 4: Using latexmk
+
+Navigate to the `notebook/` folder first:
 ```bash
+cd notebook
 latexmk main.tex
 ```
 
-### Method 4: Manual Compilation
+### Method 5: Manual Compilation
+
+Navigate to the `notebook/` folder first:
 ```bash
+cd notebook
 pdflatex -shell-escape main.tex
 pdflatex -shell-escape main.tex  # Run twice for cross-references
 ```
@@ -143,33 +208,45 @@ The LaTeX sections are **automatically generated** from the files in the `codes/
 
 **To manually regenerate sections:**
 ```bash
+cd notebook
 python3 generate_sections.py
 ```
 
-## Files Needed
+## Project Structure
 
-- `main.tex` - The main LaTeX document
-- `codes/` - Folder containing all `.cpp` template files
+**Root Directory:**
+- `main.py` - Main automated build script (run this!)
+- `README.md` - Documentation
+
+**notebook/ Directory:**
+- `main.tex` - Main LaTeX document
+- `math_formulas.tex` - Mathematical formulas and notes
 - `generate_sections.py` - Script to auto-generate sections from codes folder
-- `Makefile` - For building with `make`
-- `build.sh` - Alternative build script
-- `build` - Simple wrapper script
-- `latexmkrc` - Configuration for latexmk
+- `codes/` - Folder containing all `.cpp` template files
+- `sections.tex` - Generated file (created automatically by the build process)
+- `Makefile` - For building with `make` (optional)
+- `build.sh` - Alternative build script (optional)
+- Other LaTeX-related files and build artifacts
 
 ## Cleaning
 
+Navigate to the `notebook/` folder first, then:
+
 To remove auxiliary files:
 ```bash
+cd notebook
 make clean
 ```
 
 To remove everything including minted cache:
 ```bash
+cd notebook
 make cleanall
 ```
 
 To rebuild from scratch:
 ```bash
+cd notebook
 make rebuild
 ```
 
