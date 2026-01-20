@@ -1,6 +1,6 @@
 # Competitive Programming Notebook
 
-A LaTeX-based notebook containing competitive programming templates and algorithms.
+A LaTeX-based template containing competitive programming templates and algorithms.
 
 ## Quick Start (Easiest Method)
 
@@ -71,7 +71,7 @@ The project has the following structure:
 .
 ├── main.py              # Main build script (run this!)
 ├── README.md            # This file
-└── notebook/            # All LaTeX and source files
+└── template/            # All LaTeX and source files
     ├── main.tex         # Main LaTeX document
     ├── math_formulas.tex # Mathematical formulas and notes
     ├── generate_sections.py # Script to generate sections
@@ -82,7 +82,7 @@ The project has the following structure:
     └── ...              # Other LaTeX-related files
 ```
 
-**Note**: All files except `main.py` and `README.md` are in the `notebook/` folder. The `main.py` script handles everything automatically.
+**Note**: All files except `main.py` and `README.md` are in the `template/` folder. The `main.py` script handles everything automatically.
 
 ### Step 4: Build the PDF
 
@@ -102,11 +102,11 @@ This will automatically:
 
 **Option B: Manual Build**
 
-If you prefer to build manually, navigate to the `notebook/` folder first:
+If you prefer to build manually, navigate to the `template/` folder first:
 
-1. Change to the notebook directory:
+1. Change to the template directory:
    ```bash
-   cd notebook
+   cd template
    ```
 
 2. Generate sections from code files:
@@ -123,7 +123,7 @@ If you prefer to build manually, navigate to the `notebook/` folder first:
    pdflatex -shell-escape main.tex
    pdflatex -shell-escape main.tex  # Run twice for cross-references
    ```
-   The PDF will be generated as `main.pdf` in the `notebook/` folder.
+   The PDF will be generated as `main.pdf` in the `template/` folder.
 
 **Note**: Always use the `-shell-escape` flag. Without it, you will get errors because `minted` cannot process the code files.
 
@@ -150,39 +150,39 @@ This script handles everything automatically and organizes output files in the `
 
 ### Method 2: Using Make
 
-Navigate to the `notebook/` folder first:
+Navigate to the `template/` folder first:
 ```bash
-cd notebook
+cd template
 make
 ```
 or
 ```bash
-cd notebook
+cd template
 make pdf
 ```
 
 ### Method 3: Using the Build Script
 
-Navigate to the `notebook/` folder first:
+Navigate to the `template/` folder first:
 ```bash
-cd notebook
+cd template
 chmod +x build.sh
 ./build.sh
 ```
 
 ### Method 4: Using latexmk
 
-Navigate to the `notebook/` folder first:
+Navigate to the `template/` folder first:
 ```bash
-cd notebook
+cd template
 latexmk main.tex
 ```
 
 ### Method 5: Manual Compilation
 
-Navigate to the `notebook/` folder first:
+Navigate to the `template/` folder first:
 ```bash
-cd notebook
+cd template
 pdflatex -shell-escape main.tex
 pdflatex -shell-escape main.tex  # Run twice for cross-references
 ```
@@ -210,7 +210,7 @@ The LaTeX sections are **automatically generated** from the files in the `codes/
 
 **To manually regenerate sections:**
 ```bash
-cd notebook
+cd template
 python3 generate_sections.py
 ```
 
@@ -220,7 +220,7 @@ python3 generate_sections.py
 - `main.py` - Main automated build script (run this!)
 - `README.md` - Documentation
 
-**notebook/ Directory:**
+**template/ Directory:**
 - `main.tex` - Main LaTeX document
 - `math_formulas.tex` - Mathematical formulas and notes
 - `generate_sections.py` - Script to auto-generate sections from codes folder
@@ -232,23 +232,23 @@ python3 generate_sections.py
 
 ## Cleaning
 
-Navigate to the `notebook/` folder first, then:
+Navigate to the `template/` folder first, then:
 
 To remove auxiliary files:
 ```bash
-cd notebook
+cd template
 make clean
 ```
 
 To remove everything including minted cache:
 ```bash
-cd notebook
+cd template
 make cleanall
 ```
 
 To rebuild from scratch:
 ```bash
-cd notebook
+cd template
 make rebuild
 ```
 
