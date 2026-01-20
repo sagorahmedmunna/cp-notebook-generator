@@ -1,4 +1,4 @@
-## ICPC CP Notebook Front Page
+## CP Notebook Front Page
 
 This project is a LaTeX template for an ICPC-style competitive programming notebook front page.
 
